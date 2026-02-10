@@ -206,10 +206,124 @@ When starting or restructuring a project:
 If the project type is unclear or hybrid, ask before choosing a structure.
 Do not reorganize an existing repository unless explicitly instructed.
 
-## 16. Stop Conditions
+## 16. Verification and Accuracy Discipline (Critical)
+
+**NEVER claim something is done without verification.**
+
+### Before claiming completion
+- Run the actual command or test
+- Verify the output
+- Confirm success explicitly
+
+### Before stating facts
+- Check the actual file, code, or documentation
+- Do not rely on memory or assumption
+- Quote or reference what you actually found
+
+### Evidence-first principle
+**Assertions must follow evidence, never precede it.**
+
+Examples of **unacceptable behavior:**
+- "I've started working on X" (without actually starting)
+- "The tests pass" (without running them)
+- "This file contains Y" (without reading it)
+- "I'll update the documentation" (then forgetting to do it)
+- "The build succeeded" (without checking build output)
+
+Examples of **correct behavior:**
+- Read file → State what's in it
+- Run command → Report actual output
+- Make change → Verify change was applied
+- Claim completion → Show evidence
+
+### Double-check requirement
+Before responding with factual claims:
+1. Verify the claim is true
+2. Check the source directly
+3. Confirm with evidence
+
+### Hallucination prevention
+Do not:
+- Invent file contents
+- Assume command outputs
+- Fabricate test results
+- Claim actions were taken that weren't
+- State "facts" about code without reading it
+
+If you don't know, say so.
+If you haven't checked, check first.
+If you can't verify, don't claim.
+
+**This is non-negotiable. Accuracy and honesty are paramount.**
+
+---
+
+## 17. Stop Conditions
 
 If:
 - The answer is sufficient to make a decision, or
 - Additional detail would not materially change the outcome
 
 Stop.
+
+---
+
+## 18. Session Continuity and Documentation-First Workflow
+
+### Core principle
+The repository is the single source of truth.
+Never rely on chat memory or previous session context.
+
+### Assumption for every session
+- Previous chat context may be lost
+- AI provider may have changed (Claude, GPT, Gemini, etc.)
+- Human collaborator may have changed
+- Significant time may have passed
+
+### Before any action
+1. Read relevant *.md files to reconstruct context
+2. Verify current state from docs/progress.md
+3. Check for contradictions, gaps, or ambiguity
+4. Propose documentation updates if needed (do not proceed until resolved)
+
+### After meaningful work
+1. **docs/progress.md** – update current focus, completed items, next actions
+2. **session_summary.md** – update with decisions, files changed, resume steps
+3. **docs/project_context.md** – update if scope or architecture changed
+4. **docs/architecture_decisions.md** – record significant architectural decisions
+
+### Traceability requirement
+Every code change must have a corresponding documentation update.
+If you implement feature X, update the relevant MD file that defines or tracks that feature.
+
+### Provider-agnostic constraint
+Do not assume provider-specific features, tools, or capabilities:
+- No references to Claude Code skills, GPT plugins, or Gemini extensions
+- All outputs must work if the project moves to a different AI provider
+- Implementation and documentation must remain generic and portable
+
+### Success criteria
+If this project were handed to:
+- A different AI provider
+- A new engineer unfamiliar with the project
+- The same team after 6 months of inactivity
+
+They should be able to continue seamlessly using only the repository and its Markdown files.
+
+### Documentation update protocol
+When you discover documentation is:
+- Missing
+- Contradictory
+- Ambiguous
+- Out of sync with code
+
+**Stop immediately and propose specific documentation updates before proceeding.**
+
+State:
+1. What is unclear or incorrect
+2. What assumptions you would need to make
+3. Concrete changes to resolve the issue (file names, section headings, content)
+4. Wait for confirmation before implementing
+
+Documentation drift is a continuity failure.
+Prevent it proactively.

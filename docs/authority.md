@@ -5,6 +5,11 @@ Its purpose is to eliminate ambiguity, prevent conflicts, and ensure consistent 
 
 This file is authoritative for governance and precedence, but does not override AGENTS.md behavioral rules.
 
+**See also:**
+- [documentation_structure.md](documentation_structure.md) - What each file contains
+- [file_creation_guide.md](file_creation_guide.md) - When to create each file type
+- [README.md](../README.md) - Quick reference precedence summary
+
 ---
 
 ## 1. Instruction and Source Precedence
@@ -12,27 +17,38 @@ This file is authoritative for governance and precedence, but does not override 
 When instructions, documentation, or information conflict, follow this order strictly:
 
 1. **AGENTS.md**
-   - Defines agent behavior, output structure, reasoning style, and global operating rules.
+   - Defines agent behavior, output structure, reasoning style, and communication rules.
    - Supreme authority for how work is performed.
+   - Universal across all AI providers.
 
-2. **Feature specifications and PRDs**
+2. **AI_INSTRUCTIONS.md**
+   - Session protocol, continuity rules, and documentation-first workflow.
+   - Defines how to start sessions, reconstruct context, and maintain traceability.
+   - Universal across all AI providers.
+
+3. **Provider-specific files** (CLAUDE.md, .cursorrules, .github/copilot-instructions.md)
+   - Thin wrappers that reference AGENTS.md and AI_INSTRUCTIONS.md
+   - Add only provider-specific context (features, commands, workflows)
+   - Never override rules from AGENTS.md or AI_INSTRUCTIONS.md
+
+4. **Feature specifications and PRDs**
    - Most recent approved versions take precedence.
    - Includes documents under `docs/feature_specs/`.
 
-3. **`docs/project_context.md`**
+5. **`docs/project_context.md`**
    - Canonical description of the system, scope, architecture, and implemented behavior.
-   - Represents the single source of truth for “what the system is.”
+   - Represents the single source of truth for "what the system is."
 
-4. **`docs/architecture_decisions.md`**
+6. **`docs/architecture_decisions.md`**
    - Records why significant architectural choices were made.
    - Historical and explanatory, not speculative.
 
-5. **Execution state documents**
+7. **Execution state documents**
    - `docs/progress.md`
    - `session_summary.md`
    - Describe current and recent work state, blockers, and next actions.
 
-6. **All other documentation**
+8. **All other documentation**
    - Includes exploratory, historical, or supplementary material.
    - Never overrides higher-priority sources.
 
